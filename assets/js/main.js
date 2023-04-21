@@ -12,21 +12,36 @@ const { createApp } = Vue
 createApp({
     data() {
         return {
+            emails: [],
         
         };   
     },
 
 
-  created(){
-      axios.get('https://flynn.boolean.careers/exercises/api/random/mail').then( 
-          
-          function(response){
+    created(){
+        this.generaEmails();
+    },
     
-              const result = response.data;
-      })
-  },
-
     /* ----------------- METHODS ----------------- */
     methods: {
+        generaEmails() {
+    
+            for(let i = 0; i < 10; i++) {
+
+                axios.get('https://flynn.boolean.careers/exercises/api/random/mail').then(  (resp) => {
+    
+                    let email = resp.data.response;
+    
+                    if ( !this.emails.includes(email)){
+    
+                        this.emails.push(email);
+                    }
+                })
+                
+            }
+            
+            console.log(this.emails);
+
+        },
     }
 }).mount('#app')
