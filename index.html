@@ -15,8 +15,8 @@
 <body>
     
     <div id="app">
-        <ul>
-            <li v-for="(element, index) in emails" 
+        <ul v-if="emails.length == lengthEmails ">
+            <li  v-for="(element, index) in emails" 
             :key="index" > {{ element }}</li>
         </ul>
         

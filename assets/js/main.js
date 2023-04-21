@@ -13,6 +13,8 @@ createApp({
     data() {
         return {
             emails: [],
+            lengthEmails: 9,
+            boolean: false,
         
         };   
     },
@@ -24,23 +26,27 @@ createApp({
     
     /* ----------------- METHODS ----------------- */
     methods: {
-        generaEmails() {
-    
-            for(let i = 0; i < 10; i++) {
 
+        // Funzione per la generazione di 10 emails con ciclo for
+        generaEmails() {
+            
+            for (let i = 0; i < this.lengthEmails; i++) {
+                
                 axios.get('https://flynn.boolean.careers/exercises/api/random/mail').then(  (resp) => {
-    
-                    let email = resp.data.response;
-    
+                    
+                    let email = (resp.data.response);
+                    
                     if ( !this.emails.includes(email)){
-    
+                        
                         this.emails.push(email);
                     }
+                    console.log(email);
                 })
                 
             }
             
             console.log(this.emails);
+            
 
         },
     }
